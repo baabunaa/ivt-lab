@@ -34,21 +34,18 @@ public class TorpedoStore {
       throw new IllegalArgumentException("numberOfTorpedos");
     }
 
-    boolean success = false;
-
     // simulate random overheating of the launcher bay which prevents firing
     double r = generator.nextDouble();
 
     if (r >= FAILURE_RATE) {
       // successful firing
       this.torpedoCount -= numberOfTorpedos;
-      success = true;
+      return true;
     } else {
       // simulated failure
-      success = false;
+      return false;
     }
 
-    return success;
   }
 
   public boolean isEmpty(){
